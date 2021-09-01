@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-language" content="en">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>CMSC624-0101 | Lecture Notes Template</title>
+  <meta name="description" content="CMSC624 - Database System Architecture and Implementation - University of Maryland - Fall 2021
+">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="canonical" href="/2019/01/09/lecture-notes-template.html">
+
+  
+</head>
+
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+  </head>
+
+  <d-front-matter>
+    <script type="text/json">{
+      "title": "Lecture Notes Template",
+      "description": "An example of a distill-style lecture notes that showcases the main elements.",
+      "published": "January 9, 2019",
+      "lecturers": [
+        
+        {
+          "lecturer": "Eric Xing",
+          "lecturerURL": "https://www.cs.cmu.edu/~epxing/"
+        }
+        
+      ],
+      "authors": [
+        
+        {
+          "author": "Author 1"
+        },
+        
+        {
+          "author": "Author 2"
+        },
+        
+        {
+          "author": "Author 3"
+        }
+        
+      ],
+      "editors": [
+        
+        {
+          "editor": "Editor 1"
+        }
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <span class="site-title">
+      <a class="page-link" href="http://localhost:4000/">CMSC624-0101</a>
+    </span>
+
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+      <div class="trigger">
+        <a class="page-link" href="/logistics/">logistics</a>
+        <!-- <a class="page-link" href="/lectures/">lectures</a> -->
+        <!-- <a class="page-link" href="/notes/">notes</a> -->
+        <!-- <a class="page-link" href="/calendar/">calendar</a> -->
+        <a class="page-link" href="/assignments/">assignments</a>
+        <a class="page-link" href="/project/">project</a>
+        <!-- <a class="page-link" href="/reports/">reports</a> -->
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+
+    <div class="page-content">
+
+      <d-title>
+        <h1>Lecture Notes Template</h1>
+        <p>An example of a distill-style lecture notes that showcases the main elements.</p>
+      </d-title>
+
+      <d-byline></d-byline>
+
+      <d-article>
+        <h2 id="equations">Equations</h2>
+
+<p>This theme supports rendering beautiful math in inline and display modes using <a href="https://khan.github.io/KaTeX/">KaTeX</a> engine.
+You just need to surround your math expression with <code class="language-plaintext highlighter-rouge">$</code>, like <code class="language-plaintext highlighter-rouge">$ E = mc^2 $</code>.
+If you leave it inside a paragraph, it will produce an inline expression, just like $E = mc^2$.</p>
+
+<p>To use display mode, again surround your expression with <code class="language-plaintext highlighter-rouge">$$</code> and place it as a separate paragraph.
+Here is an example:</p>
+
+\[\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)\]
+
+<p>Alternatively and for more complex math environments, use <code class="language-plaintext highlighter-rouge">&lt;d-math block&gt;...&lt;/d-math&gt;</code> tags.
+Here is an example:</p>
+
+<d-math block="">
+\begin{aligned}
+\left( \sum_{i=1}^n u_i v_i \right)^2 &amp; \leq \left( \sum_{i=1}^n u_i^2 \right) \left( \sum_{i=1}^n v_i^2 \right) \\
+\left| \int f(x) \overline{g(x)} dx \right|^2 &amp; \leq  \int |f(x)|^2 dx \int |g(x)|^2 dx
+\end{aligned}
+</d-math>
+
+<p>Note that <a href="https://khan.github.io/KaTeX/">KaTeX</a> is work in progress, so it does not support the full range of math expressions as, say, <a href="https://www.mathjax.org/">MathJax</a>.
+Yet, it is <a href="http://www.intmath.com/cg5/katex-mathjax-comparison.php">blazing fast</a>.</p>
+
+<hr />
+
+<h2 id="figures">Figures</h2>
+
+<p>To add figures, use <code class="language-plaintext highlighter-rouge">&lt;figure&gt;...&lt;/figure&gt;</code> tags.
+Within the tags, define multiple rows of images using <code class="language-plaintext highlighter-rouge">&lt;div class="row"&gt;...&lt;/div&gt;</code>.
+To add captions, use <code class="language-plaintext highlighter-rouge">&lt;figcaption&gt;...&lt;/figcaption&gt;</code> tags.</p>
+
+<p>Here is an example usage of a figure that consists of a row of images with a caption:</p>
+
+<figure id="example-figure" class="l-body-outset">
+  <div class="row">
+    <div class="col one">
+      <img src="/assets/img/notes/template/1.jpg" />
+    </div>
+    <div class="col one">
+      <img src="/assets/img/notes/template/2.jpg" />
+    </div>
+    <div class="col one">
+      <img src="/assets/img/notes/template/3.jpg" />
+    </div>
+  </div>
+  <figcaption>
+    <strong>Figure caption title in bold.</strong>
+    An example figure caption.
+  </figcaption>
+</figure>
+
+<p>Note that the figure uses <code class="language-plaintext highlighter-rouge">class="l-body-outset"</code> which lets it take more horizontal space.
+For more on this, see layouts section below.
+Also, the size of the images themselves is controlled by <code class="language-plaintext highlighter-rouge">class="one"</code>, <code class="language-plaintext highlighter-rouge">class="two"</code>, or <code class="language-plaintext highlighter-rouge">class="three"</code> which corresponds to 1/3, 2/3, 3/3 of the full horizontal space, respectively.</p>
+
+<p>Here is the same example, but each image is captioned separately:</p>
+<figure id="example-figure" class="l-body-outset">
+  <div class="row">
+    <div class="col one">
+      <img src="/assets/img/notes/template/1.jpg" />
+      <figcaption>
+        <strong>Figure caption title 1.</strong>
+        Caption text for figure 1.
+      </figcaption>
+    </div>
+    <div class="col one">
+      <img src="/assets/img/notes/template/2.jpg" />
+      <figcaption>
+        <strong>Figure caption title 2.</strong>
+        A very very very long caption text for figure 2 so that it is longer than the image itself.
+      </figcaption>
+    </div>
+  </div>
+</figure>
+
+<p>Here is an example that shows how the figures of different sizes are aligned:</p>
+
+<figure>
+  <div class="row">
+    <div class="col two">
+      <img src="/assets/img/notes/template/4.jpg" />
+    </div>
+    <div class="col one">
+      <img src="/assets/img/notes/template/2.jpg" />
+      <figcaption>
+        <strong>Subcaption.</strong>
+        The content of the subcaption.
+      </figcaption>
+    </div>
+  </div>
+  <figcaption>
+    <strong>The second row figure caption title.</strong>
+    An example of a sencond row figure caption.
+  </figcaption>
+</figure>
+
+<hr />
+
+<h2 id="citations">Citations</h2>
+
+<p>Citations are then used in the article body with the <code class="language-plaintext highlighter-rouge">&lt;d-cite&gt;</code> tag.
+The key attribute is a reference to the id provided in the bibliography.
+The key attribute can take multiple ids, separated by commas.</p>
+
+<p>The citation is presented inline like this: <d-cite key="gregor2015draw"></d-cite> (a number that displays more information on hover).
+If you have an appendix, a bibliography is automatically created and populated in it.</p>
+
+<p>Distill chose a numerical inline citation style to improve readability of citation dense articles and because many of the benefits of longer citations are obviated by displaying more information on hover.
+However, we consider it good style to mention author last names if you discuss something at length and it fits into the flow well — the authors are human and it’s nice for them to have the community associate them with their work.</p>
+
+<hr />
+
+<h2 id="footnotes">Footnotes</h2>
+
+<p>Just wrap the text you would like to show up in a footnote in a <code class="language-plaintext highlighter-rouge">&lt;d-footnote&gt;</code> tag.
+The number of the footnote will be automatically generated.<d-footnote>This will become a hoverable footnote.</d-footnote></p>
+
+<hr />
+
+<h2 id="code-blocks">Code Blocks</h2>
+
+<p>Syntax highlighting is provided within <code class="language-plaintext highlighter-rouge">&lt;d-code&gt;</code> tags.
+An example of inline code snippets: <code class="language-plaintext highlighter-rouge">&lt;d-code language="html"&gt;let x = 10;&lt;/d-code&gt;</code>.
+For larger blocks of code, add a <code class="language-plaintext highlighter-rouge">block</code> attribute:</p>
+
+<d-code block="" language="javascript">
+  var x = 25;
+  function(x) {
+    return x * x;
+  }
+</d-code>
+
+<hr />
+
+<h2 id="layouts">Layouts</h2>
+
+<p>The main text column is referred to as the body.
+It is the assumed layout of any direct descendants of the <code class="language-plaintext highlighter-rouge">d-article</code> element.</p>
+
+<div class="fake-img l-body">
+  <p>.l-body</p>
+</div>
+
+<p>For images you want to display a little larger, try <code class="language-plaintext highlighter-rouge">.l-page</code>:</p>
+
+<div class="fake-img l-page">
+  <p>.l-page</p>
+</div>
+
+<p>All of these have an outset variant if you want to poke out from the body text a little bit.
+For instance:</p>
+
+<div class="fake-img l-body-outset">
+  <p>.l-body-outset</p>
+</div>
+
+<div class="fake-img l-page-outset">
+  <p>.l-page-outset</p>
+</div>
+
+<p>Occasionally you’ll want to use the full browser width.
+For this, use <code class="language-plaintext highlighter-rouge">.l-screen</code>.
+You can also inset the element a little from the edge of the browser by using the inset variant.</p>
+
+<div class="fake-img l-screen">
+  <p>.l-screen</p>
+</div>
+<div class="fake-img l-screen-inset">
+  <p>.l-screen-inset</p>
+</div>
+
+<p>The final layout is for marginalia, asides, and footnotes.
+It does not interrupt the normal flow of <code class="language-plaintext highlighter-rouge">.l-body</code> sized text except on mobile screen sizes.</p>
+
+<div class="fake-img l-gutter">
+  <p>.l-gutter</p>
+</div>
+
+<hr />
+
+<h2 id="arbitrary-latex-experimental">Arbitrary \(\LaTeX\) (experimental)</h2>
+
+<p>In fact, you can write entire blocks of LaTeX using <code class="language-plaintext highlighter-rouge">&lt;latex-js&gt;...&lt;/latex-js&gt;</code> tags.
+Below is an example:<d-footnote>If you don't see anything, it means that your browser does not support Shadow DOM.</d-footnote></p>
+
+<latex-js style="border: 1px dashed #aaa;">
+This document will show most of the supported features of \LaTeX.js.
+
+\section{Characters}
+
+It is possible to input any UTF-8 character either directly or by character code
+using one of the following:
+
+\begin{itemize}
+    \item \texttt{\textbackslash symbol\{"00A9\}}: \symbol{"00A9}
+    \item \verb|\char"A9|: \char"A9
+    \item \verb|^^A9 or ^^^^00A9|: ^^A9 or ^^^^00A9
+\end{itemize}
+
+\bigskip
+
+\noindent
+Special characters, like those:
+\begin{center}
+\$ \&amp; \% \# \_ \{ \} \~{} \^{} \textbackslash % \&lt; \&gt;  \"   % TODO cannot be typeset
+\end{center}
+%
+have to be escaped.
+
+More than 200 symbols are accessible through macros. For instance: 30\,\textcelsius{} is
+86\,\textdegree{}F.
+</latex-js>
+
+<p>Note that you can easily interleave latex blocks with the standard markdown.</p>
+
+<latex-js style="border: 1px dashed #aaa;">
+\section{Environments}
+
+\subsection{Lists: Itemize, Enumerate, and Description}
+
+The \texttt{itemize} environment is suitable for simple lists, the \texttt{enumerate} environment for
+enumerated lists, and the \texttt{description} environment for descriptions.
+
+\begin{enumerate}
+    \item You can nest the list environments to your taste:
+        \begin{itemize}
+            \item But it might start to look silly.
+            \item[-] With a dash.
+        \end{itemize}
+    \item Therefore remember: \label{remember}
+        \begin{description}
+            \item[Stupid] things will not become smart because they are in a list.
+            \item[Smart] things, though, can be presented beautifully in a list.
+        \end{description}
+    \item Technical note: Viewing this in Chrome, however, will show too much vertical space
+        at the end of a nested environment (see above). On top of that, margin collapsing for inline-block
+        boxes is not allowed. Maybe using \texttt{dl} elements is too complicated for this and a simple nested
+        \texttt{div} should be used instead.
+\end{enumerate}
+%
+Lists can be deeply nested:
+%
+\begin{itemize}
+  \item list text, level one
+    \begin{itemize}
+      \item list text, level two
+        \begin{itemize}
+          \item list text, level three
+
+            And a new paragraph can be started, too.
+            \begin{itemize}
+              \item list text, level four
+
+                And a new paragraph can be started, too.
+                This is the maximum level.
+
+              \item list text, level four
+            \end{itemize}
+
+          \item list text, level three
+        \end{itemize}
+      \item list text, level two
+    \end{itemize}
+  \item list text, level one
+  \item list text, level one
+\end{itemize}
+
+\section{Mathematical Formulae}
+
+Math is typeset using KaTeX. Inline math:
+$
+f(x) = \int_{-\infty}^\infty \hat f(\xi)\,e^{2 \pi i \xi x} \, d\xi
+$
+as well as display math is supported:
+$$
+f(n) = \begin{cases} \frac{n}{2}, &amp; \text{if } n\text{ is even} \\ 3n+1, &amp; \text{if } n\text{ is odd} \end{cases}
+$$
+
+</latex-js>
+
+<p>Full \(\LaTeX\) blocks are supported through <a href="https://latex.js.org/" target="\_blank">LaTeX JS</a> library, which is still under development and supports only limited functionality (which is still pretty cool!) and does not allow fine-grained control of the layout, fonts, etc.</p>
+
+<p><em>Note: We do not recommend using using LaTeX JS for writing lecture notes at this stage.</em></p>
+
+<hr />
+
+<h2 id="print">Print</h2>
+
+<p>Finally, you can easily get a PDF or printed version of the notes by simply hitting <code class="language-plaintext highlighter-rouge">ctrl+P</code> (or <code class="language-plaintext highlighter-rouge">⌘+P</code> on macOS).</p>
+
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Database System Architecture and Implementation</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Daniel Abadi</li><li><a class="u-email" href="mailto:abadi@umd.edu">abadi@umd.edu</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>&copy; Copyright 2021 University of Maryland. <BR />
+        Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+  <d-bibliography src="/assets/bibliography/2019-01-09-lecture-notes-template.bib">
+  </d-bibliography>
+
+  <!-- Load jQuery -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+
+
+
+
+
+<!-- Include custom icon fonts -->
+<link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/assets/css/academicons.min.css">
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+</html>

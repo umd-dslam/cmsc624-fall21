@@ -1,0 +1,13 @@
+Instructors:
+    - name: Daniel Abadi
+      email: abadi@umd.edu
+      url: https://www.cs.umd.edu/~abadi/
+      office-hours: "Immediately after class or by appointment"
+      image: staff/dan.jpeg
+
+TA:
+    - name: Gang Liao
+      email: gangliao@cs.umd.edu
+      url: gangliao.me
+      office-hours: "Tu/Th 5-6pm, IRB 5136"
+      image: staff/gang.jpeg
