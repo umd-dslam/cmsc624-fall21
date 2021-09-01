@@ -27,7 +27,7 @@ A final project is due at the end of the course. For most students, this will be
 
 ***
 
-## Grades
+### Grades
 
 This is a graduate level course, and by the end of this class you should have a good understanding of database system architecture and implementation, and be able to use them to solve real problems of modest complexity. The grading breakdown is as follows: 
 
