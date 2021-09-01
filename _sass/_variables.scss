@@ -37,6 +37,7 @@ $viewport-medium: 48em;
 $viewport-large: 64em;
 
 // Colors
+$deep-red-color:    #CF0000 !default;
 $red:               #FF3636 !default;
 $red-1:             #f95020 !default;
 $orange:            #F29105 !default;
@@ -69,6 +70,9 @@ $darken-1:          rgba(#000,.0625) !default;
 $darken-2:          rgba(#000,.125) !default;
 $darken-3:          rgba(#000,.25) !default;
 $darken-4:          rgba(#000,.5) !default;
+
+$white-color: #ffffff !default;
+$black-color: #000000 !default;
 
 $theme-color:       $blue;
 $code-color:        $dark-gray;
@@ -165,7 +169,7 @@ $table-bg-hover:                #f5f5f5 !default;
 $table-bg-active:               $table-bg-hover !default;
 
 //** Border color for table and cell borders.
-$table-border-color:            #ddd !default;
+$table-border-color:            $theme-color !default;
 
 // Form states and alerts
 //## Define colors for form feedback states and, by default, alerts.

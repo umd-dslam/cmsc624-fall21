@@ -4,7 +4,7 @@
 */
 
 table {
-  background-color: $table-bg;
+  background-color: $darken-1;
 
   // Table cell sizing
   //
@@ -29,12 +29,13 @@ table {
 caption {
   padding-top: $table-cell-padding;
   padding-bottom: $table-cell-padding;
-  color: $light-gray;
-  text-align: left;
+  color: $black-color;
+  text-align: center;
 }
 
 th {
-  text-align: left;
+  text-align: center;
+  color: $blue;
 }
 
 
@@ -114,7 +115,7 @@ th {
     > tr {
       > th,
       > td {
-        border: 1px solid $table-border-color;
+        border: 2px solid $table-border-color;
       }
     }
   }
