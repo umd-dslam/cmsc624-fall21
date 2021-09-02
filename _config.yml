@@ -1,7 +1,7 @@
 # -----------------------------------------------------------------------------
 # Site settings
 # -----------------------------------------------------------------------------
-author: Daniel Abadi
+author: Daniel Abadi, Gang Liao
 name: CMSC624-0101
 title: Database System Architecture and Implementation
 email: abadi@umd.edu
@@ -16,7 +16,7 @@ baseurl: /cmsc624-fall21 # the subpath of your site, e.g. /blog/
 # -----------------------------------------------------------------------------
 # Social integration
 # -----------------------------------------------------------------------------
-# github_username: gangliao
+github_username: 
 # google_analytics: 
 # youtube_channel: 
 # rss:  # notes rss

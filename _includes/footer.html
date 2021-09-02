@@ -14,19 +14,18 @@
               {{ site.title | escape }}
             {%- endif -%}
             </li>
-            {%- if site.email -%}
+            <!-- {%- if site.email -%}
             <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {%- endif -%}
+            {%- endif -%} -->
         </ul>
       </div>
 
       <div class="footer-col footer-col-2">
-        {%- include social.html -%}
+        <p>{{ site.social }}</p>
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>&copy; Copyright {{ site.time | date: "%Y" }} University of Maryland. <BR />
-        {{ site.footer_text }}</p>
+        <p>&copy; Copyright {{ site.time | date: "%Y" }} University of Maryland.</p>
       </div>
     </div>
 
