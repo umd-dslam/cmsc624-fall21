@@ -1,0 +1,56 @@
+- title: "Module 2: Large Scale Transactional Databases"
+
+- date: 11/04
+  lecturer: Eric
+  title: >
+    <strong>Bigtable</strong>
+  readings:
+    - Chang, Fay and Dean, Jeffrey and Ghemawat, Sanjay and Hsieh, Wilson C and Wallach, Deborah A and Burrows, Mike and Chandra, Tushar and Fikes, Andrew and Gruber, Robert E, <a href="https://storage.googleapis.com/pub-tools-public-publication-data/pdf/68a74a85e1662fe02ff3967497f31fda7f32225c.pdf" target="_blank">Bigtable - A Distributed Storage System for Structured Data, OSDI 2006, (Sec. 1-7)</a>
+
+- date: 11/09
+  lecturer: Eric
+  title: >
+    <strong>Calvin</strong>
+  readings:
+    - Thomson, Alexander and Diamond, Thaddeus and Weng, Shu-Chun and Ren, Kun and Shao, Philip and Abadi, Daniel J, <a href="http://www.cs.umd.edu/~abadi/papers/calvin-sigmod12.pdf" target="_blank">Calvin - Fast Distributed Transactions for Partitioned Database Systems, SIGMOD 2012, (Sec. 1-3 and 6)</a>
+
+- date: 11/11
+  lecturer: Eric
+  title: >
+    <strong>Spanner</strong>
+  readings:
+    - Corbett, James C. and Dean, Jeffrey and Epstein, Michael and Fikes, Andrew and Frost, Christopher and Furman, J. J. and Ghemawat, Sanjay and Gubarev, Andrey and Heiser, Christopher and Hochschild, Peter and Hsieh, Wilson and Kanthak, Sebastian and Kogan, Eugene and Li, Hongyi and Lloyd, Alexander and Melnik, Sergey and Mwaura, David and Nagle, David and Quinlan, Sean and Rao, Rajesh and Rolig, Lindsay and Saito, Yasushi and Szymaniak, Michal and Taylor, Christopher and Wang, Ruth and Woodford, Dale, <a href="https://www.usenix.org/system/files/conference/osdi12/osdi12-final-16.pdf" target="_blank">Spanner - Google's Globally-Distributed Database, OSDI 2012, (Sec. 1-5.2)</a>
+
+- date: 11/16
+  lecturer: Eric
+  title: >
+    <strong>SLOG</strong>
+  readings:
+    - Ren, Kun and Li, Dennis and Abadi, Daniel J, <a href="http://www.cs.umd.edu/~abadi/papers/1154-Abadi.pdf" target="_blank">SLOG - Serializable, low-latency, geo-replicated transactions, VLDB 2019, (Sec. 1-4)</a>
+
+- date: 11/18
+  lecturer: Eric
+  title: >
+    <strong>FaunaDB</strong>
+  readings:
+    - Freels, Matt, <a href="https://fauna-assets.s3.amazonaws.com/public/FaunaDB-Technical-Whitepaper.pdf" target="_blank">FaunaDB - An Architectural Overview</a>. You can skip the section entitled "Security" and everything from "Background Tasks" until the conclusion.
+
+- date: 11/23
+  lecturer: Eric
+  title: >
+    <strong>Amazon Aurora</strong>
+  readings:
+    - Verbitski, Alexandre and Gupta, Anurag and Saha, Debanjan and Brahmadesam, Murali and Gupta, Kamal and Mittal, Raman and Krishnamurthy, Sailesh and Maurice, Sandor and Kharatishvili, Tengiz and Bao, Xiaofeng, <a href="https://www.allthingsdistributed.com/files/p1041-verbitski.pdf" target="_blank">Amazon aurora - Design considerations for high throughput cloud-native relational databases, SIGMOD 2017</a>
+
+
+- date: 11/30
+  lecturer: Eric
+  title: >
+    <strong>Silo</strong>
+  readings:
+    - Tu, Stephen and Zheng, Wenting and Kohler, Eddie and Liskov, Barbara and Madden, Samuel, <a href="https://wzheng.github.io/silo.pdf" target="_blank">Speedy Transactions in Multicore In-Memory Databases, SOSP 2013, (Sections 1, 3, 4, and 5. You can skip 4.8 and 4.9)</a>
+
+
+- date: 11/30
+  title: >
+    <strong>Happy ending!</strong>
