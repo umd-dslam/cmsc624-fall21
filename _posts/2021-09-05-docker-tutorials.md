@@ -48,9 +48,9 @@ The easiest way to get an image is to **pull** it from a **registry**. Docker
 has a default registry built in. Our VM is running Ubuntu 16.04, and it turns
 out there's an image available with this OS on it! Here's the command to run:
 
-```shell
+<d-code block language="bash">
 docker pull ubuntu:16.04
-```
+</d-code>
 
 Let's go through this command. "docker" is, of course, the utility
 we're using. The "pull" command tells us that we want to get something
@@ -62,16 +62,16 @@ docker we only want one image, and it's the one with the **tag**
 
 When the command completes, try running
 
-```shell
+<d-code block language="bash">
 docker images
-```
+</d-code>
 
 You should see something like:
 
-```shell
+<d-code block language="bash">
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 ubuntu              16.04               2a4cca5ac898        28 hours ago        111MB
-```
+</d-code>
 
 Most of this should be fairly self-explanatory. The image ID is
 another hexadecimal number, like with git, but it's clearly not a
@@ -81,20 +81,20 @@ identifier for this image.
 We can do a few things with this image, aside from running it. Try
 the following:
 
-```shell
+<d-code block language="bash">
 docker tag ubuntu:16.04 my_ubuntu
 docker images
-```
+</d-code>
 
 Note that we now see the same image ID twice, but with different
 names. By default, a repository (the tagless part of an image name)
 is tagged as "latest" if you don't specify one. Let's try specifying
 a tag, though:
 
-```shell
+<d-code block language="bash">
 docker tag ubuntu:16.04 foo:bar
 docker images
-```
+</d-code>
 
 The results should not be surprising.
 
@@ -102,18 +102,18 @@ We can quickly build up a lot of images we don't want anymore, so
 it's good to know how to clean these up. Let's get rid of our new
 tagged images:
 
-```shell
+<d-code block language="bash">
 docker rmi my_ubuntu:latest foo:bar
 docker images
-```
+</d-code>
 
 A common problem is that we'll end up reusing an old tag, leaving
 an image with no `repository:tag` name. These show up as "<none>:<none>".
 We can get rid of all of these with the following bash one-liner:
 
-```shell
+<d-code block language="bash">
 docker images -a | grep none | awk '{print $3}' | xargs docker rmi
-```
+</d-code>
 
 For the curious, feel free to read the man pages for `awk` and `xargs`.
 This is not going to be essential information for this course,
@@ -122,14 +122,14 @@ though.
 The commands here are largely from an older version of docker. Now they're
 aliases to new-style commands. Here's the mapping:
 
-```shell
+<d-code block language="bash">
 |  Old Command  |    New Command    |
 | ------------- | ----------------- |
 | docker images | docker image list |
 | docker pull   | docker image pull |
 | docker rmi    | docker image rm   |
 | docker tag    | docker image tag  |
-```
+</d-code>
 
 
 ### Running an Image in a Container
@@ -144,29 +144,29 @@ Containers can also be started with various options, such as elevated
 privileges, mounted volumes, environment variables, and so on. The most
 basic invocation is
 
-```shell
+<d-code block language="bash">
 docker run ubuntu:16.04
-```
+</d-code>
 
 If you run this, you'll find that it pauses for a second or so, and then
 returns to the command line. If you want to see running containers, run
 
-```shell
+<d-code block language="bash">
 docker ps
-```
+</d-code>
 
 You see headings, but probably no actual containers. Now, try
 
-```shell
+<d-code block language="bash">
 docker ps -a
-```
+</d-code>
 
 Now we have something! Here's an example of what you might see:
 
-```shell
+<d-code block language="bash">
 CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
 1b937126d5bc        ubuntu:16.04        "/bin/bash"         About a minute ago   Exited (0) About a minute ago                       upbeat_archimedes
-```
+</d-code>
 
 Let's parse this out:
 
@@ -185,15 +185,15 @@ By default, names are assigned randomly according to the pattern
 
 We can assign a name to the container, which is often useful:
 
-```shell
+<d-code block language="bash">
 docker run --name=bash_test ubuntu:16.04
-```
+</d-code>
 
 This will behave similarly to the previous command, but if we run
 
-```shell
+<d-code block language="bash">
 docker ps -a
-```
+</d-code>
 
 We'll now see our container named "bash_test" along with whatever random name
 our first container was assigned.
@@ -201,24 +201,24 @@ our first container was assigned.
 Usually, an image is defined to do something useful when run non-interactively.
 We can get interactive access to the container, though, as follows:
 
-```shell
+<d-code block language="bash">
 docker run -ti ubuntu:16.04
-```
+</d-code>
 
 We've passed two new options to docker run. The `-t` option allocates a
 pseudo-TTY, and the `-i` option makes the container interactive. You should
-now have a shell on the container running as root! If you run `docker ps` in
+now have a bash on the container running as root! If you run `docker ps` in
 another terminal, you will see that the container status is
 "Up <length of time>".
 
-When you're done playing around in this shell, exit to stop the container.
+When you're done playing around in this bash, exit to stop the container.
 
 At this point, you probably want to get rid of these stopped containers. Run:
 
-```shell
+<d-code block language="bash">
 docker rm bash_test
 docker ps -a
-```
+</d-code>
 
 You'll still have the two randomly-named containers, but the one named
 "bash_test" should no longer be present. Remove the other two, as well.
@@ -226,53 +226,53 @@ You'll still have the two randomly-named containers, but the one named
 We don't have to run the configured program in a container; we can run any
 command that's present on the image. Let's see this in action:
 
-```shell
+<d-code block language="bash">
 docker run ubuntu:16.04 /bin/date
-```
+</d-code>
 
 That should print the date in the container. It's probably in UTC, while running
 `/bin/date` on your VM should print the date in Eastern US time (EST or EDT). You
 can also specify options:
 
-```shell
+<d-code block language="bash">
 docker run ubuntu:16.04 ls /var
-```
+</d-code>
 
 Another very useful option is `--rm`, which will get rid of the container once
 it stops:
 
-```shell
+<d-code block language="bash">
 docker run --rm --name="rm_test" ubuntu:16.04 ls /var
-```
+</d-code>
 
 We've once again been using old-style commands, which are aliases:
 
-```shell
+<d-code block language="bash">
 | Old Command |     New Command      |
 | ----------- | -------------------- |
 | docker run  | docker container run |
 | docker ps   | docker container ls  |
-```
+</d-code>
 
 ### Stopping a Running Container
 
 A container might become unresponsive, or it might be a long-running service
 that you want to terminate. You can do this with either of the following:
 
-```shell
+<d-code block language="bash">
 docker kill <container>
 docker stop <container>
-```
+</d-code>
 
 `stop` is more graceful, trying SIGTERM first, and then SIGKILL. `kill` sends
 SIGKILL by default, but this can be overridden on the command line.
 
-```shell
+<d-code block language="bash">
 | Old Command |      New Command      |
 | ----------- | --------------------- |
 | docker kill | docker container kill |
 | docker stop | docker container stop |
-```
+</d-code>
 
 
 ### Removing Stopped Containers
@@ -281,22 +281,22 @@ As with images, you'll tend to accumulate lots of stopped containers, unless
 you've run them all with the "--rm" option. Fortunately, we can get rid of
 these with
 
-```shell
+<d-code block language="bash">
 docker rm <container>
-```
+</d-code>
 
 which is now an alias for
 
-```shell
+<d-code block language="bash">
 docker container rm <container>
-```
+</d-code>
 
 
 ### Other Options for Running Containers
 
 Here are some useful options you might want to use:
 
-```shell
+<d-code block language="bash">
 | Option |    Argument     |                  Effect                   |
 | ------ | --------------- | ----------------------------------------- |
 | --rm   |                 | removes container after exit              |
@@ -305,7 +305,7 @@ Here are some useful options you might want to use:
 | -h     |   <hostname>    | set the container's hostname              |
 | -p     | <hport>:<cport> | map host's <hport> to container's <cport> |
 | -v     |  <hdir>:<cdir>  | mount host's <hdir> on <cdir>             |
-```
+</d-code>
 
 ### Executing Commands in a Running Container
 
@@ -314,20 +314,20 @@ where the **exec** command can come in handy. It's a lot like **run** but for
 a container, rather than an image. Here's a common thing you might want to
 do:
 
-```shell
+<d-code block language="bash">
 docker run --name=svc_instance my_service:latest
 docker exec -ti svc_instance /bin/bash
-```
+</d-code>
 
 What this does is to first start a container using the latest version of
 the image `my_service`, and name the container `svc_instance`, and then to
-execute an interactive bash shell on that container. You don't have to exec an
+execute an interactive bash bash on that container. You don't have to exec an
 interactive command, though. There may be times when you want to run something
 like:
 
-```shell
+<d-code block language="bash">
 docker exec svc_instance touch /var/cache/magic_file
-```
+</d-code>
 
 in order to change the behavior of a running process. As with the other commands
 we've looked at, `docker exec` is now an alias for `docker container exec`.
@@ -340,10 +340,10 @@ available to the process in a container, this output would generally be lost.
 Docker saves this output for you, however, and you can retrieve these by
 running
 
-```shell
+<d-code block language="bash">
 docker logs <container>
 docker container logs <container>
-```
+</d-code>
 
 The first command is now an alias for the second command. There are a number
 of options, such as `--since` to limit the timeframe of the logs returned,
