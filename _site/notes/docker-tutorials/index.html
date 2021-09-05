@@ -267,8 +267,8 @@ docker ps -a
 <p>Now we have something! Here’s an example of what you might see:</p>
 
 <d-code block="" language="bash">
-CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
-1b937126d5bc        ubuntu:16.04        "/bin/bash"         About a minute ago   Exited (0) About a minute ago                       upbeat_archimedes
+CONTAINER ID   IMAGE          COMMAND       CREATED              STATUS                          PORTS   NAMES
+1b937126d5bc   ubuntu:16.04   "/bin/bash"   About a minute ago   Exited (0) About a minute ago           upbeat_archimedes
 </d-code>
 
 <p>Let’s parse this out:</p>
@@ -365,12 +365,12 @@ docker run --rm --name="rm_test" ubuntu:16.04 ls /var
 that you want to terminate. You can do this with either of the following:</p>
 
 <d-code block="" language="bash">
-docker kill <container>
-docker stop <container>
-&lt;/d-code&gt;
+docker kill "container"
+docker stop "container"
+</d-code>
 
-`stop` is more graceful, trying SIGTERM first, and then SIGKILL. `kill` sends
-SIGKILL by default, but this can be overridden on the command line.
+<p><code class="language-plaintext highlighter-rouge">stop</code> is more graceful, trying SIGTERM first, and then SIGKILL. <code class="language-plaintext highlighter-rouge">kill</code> sends
+SIGKILL by default, but this can be overridden on the command line.</p>
 
 <d-code block="" language="bash">
 | Old Command |      New Command      |
@@ -379,82 +379,78 @@ SIGKILL by default, but this can be overridden on the command line.
 | docker stop | docker container stop |
 </d-code>
 
+<h3 id="removing-stopped-containers">Removing Stopped Containers</h3>
 
-### Removing Stopped Containers
-
-As with images, you'll tend to accumulate lots of stopped containers, unless
-you've run them all with the "--rm" option. Fortunately, we can get rid of
-these with
-
-<d-code block="" language="bash">
-docker rm <container>
-&lt;/d-code&gt;
-
-which is now an alias for
+<p>As with images, you’ll tend to accumulate lots of stopped containers, unless
+you’ve run them all with the “–rm” option. Fortunately, we can get rid of
+these with</p>
 
 <d-code block="" language="bash">
-docker container rm <container>
-&lt;/d-code&gt;
+docker rm "container"
+</d-code>
 
+<p>which is now an alias for</p>
 
-### Other Options for Running Containers
+<d-code block="" language="bash">
+docker container rm "container"
+</d-code>
 
-Here are some useful options you might want to use:
+<h3 id="other-options-for-running-containers">Other Options for Running Containers</h3>
+
+<p>Here are some useful options you might want to use:</p>
 
 <d-code block="" language="bash">
 | Option |    Argument     |                  Effect                   |
 | ------ | --------------- | ----------------------------------------- |
 | --rm   |                 | removes container after exit              |
 | -ti    |                 | run interactively with a pTTY             |
-| -e     |     <vars>      | set environment variables                 |
-| -h     |   <hostname>    | set the container's hostname              |
-| -p     | <hport>:<cport> | map host's <hport> to container's <cport> |
-| -v     |  <hdir>:<cdir>  | mount host's <hdir> on <cdir>             |
-&lt;/d-code&gt;
+| -e     |      vars       | set environment variables                 |
+| -h     |    hostname     | set the container's hostname              |
+| -p     |   hport:cport   | map host's "hport" to container's "cport" |
+| -v     |    hdir:cdir    | mount host's "hdir" on "cdir"             |
+</d-code>
 
-### Executing Commands in a Running Container
+<h3 id="executing-commands-in-a-running-container">Executing Commands in a Running Container</h3>
 
-Sometimes you need to examine what's going on inside a container. That's
-where the **exec** command can come in handy. It's a lot like **run** but for
-a container, rather than an image. Here's a common thing you might want to
-do:
+<p>Sometimes you need to examine what’s going on inside a container. That’s
+where the <strong>exec</strong> command can come in handy. It’s a lot like <strong>run</strong> but for
+a container, rather than an image. Here’s a common thing you might want to
+do:</p>
 
 <d-code block="" language="bash">
 docker run --name=svc_instance my_service:latest
 docker exec -ti svc_instance /bin/bash
 </d-code>
 
-What this does is to first start a container using the latest version of
-the image `my_service`, and name the container `svc_instance`, and then to
-execute an interactive bash bash on that container. You don't have to exec an
+<p>What this does is to first start a container using the latest version of
+the image <code class="language-plaintext highlighter-rouge">my_service</code>, and name the container <code class="language-plaintext highlighter-rouge">svc_instance</code>, and then to
+execute an interactive bash bash on that container. You don’t have to exec an
 interactive command, though. There may be times when you want to run something
-like:
+like:</p>
 
 <d-code block="" language="bash">
 docker exec svc_instance touch /var/cache/magic_file
 </d-code>
 
-in order to change the behavior of a running process. As with the other commands
-we've looked at, `docker exec` is now an alias for `docker container exec`.
+<p>in order to change the behavior of a running process. As with the other commands
+we’ve looked at, <code class="language-plaintext highlighter-rouge">docker exec</code> is now an alias for <code class="language-plaintext highlighter-rouge">docker container exec</code>.</p>
 
+<h3 id="getting-process-output">Getting Process Output</h3>
 
-### Getting Process Output
-
-Many processes send their output to STDOUT or STDERR. Since there's no TTY
+<p>Many processes send their output to STDOUT or STDERR. Since there’s no TTY
 available to the process in a container, this output would generally be lost.
 Docker saves this output for you, however, and you can retrieve these by
-running
+running</p>
 
 <d-code block="" language="bash">
-docker logs <container>
-docker container logs <container>
-&lt;/d-code&gt;
+docker logs "container"
+docker container logs "container"
+</d-code>
 
-The first command is now an alias for the second command. There are a number
-of options, such as `--since` to limit the timeframe of the logs returned,
-`-f` to continue to follow the logs rather than just dumping their current
-contents and exiting, and `-t` to show timestamps at the beginnings of lines.
-</container></container></d-code></cdir></hdir></cdir></hdir></cport></hport></cport></hport></hostname></vars></d-code></container></d-code></container></d-code></container></container></d-code>
+<p>The first command is now an alias for the second command. There are a number
+of options, such as <code class="language-plaintext highlighter-rouge">--since</code> to limit the timeframe of the logs returned,
+<code class="language-plaintext highlighter-rouge">-f</code> to continue to follow the logs rather than just dumping their current
+contents and exiting, and <code class="language-plaintext highlighter-rouge">-t</code> to show timestamps at the beginnings of lines.</p>
 
       </d-article>
 

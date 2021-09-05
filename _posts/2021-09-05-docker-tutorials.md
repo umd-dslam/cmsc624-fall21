@@ -164,8 +164,8 @@ docker ps -a
 Now we have something! Here's an example of what you might see:
 
 <d-code block language="bash">
-CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
-1b937126d5bc        ubuntu:16.04        "/bin/bash"         About a minute ago   Exited (0) About a minute ago                       upbeat_archimedes
+CONTAINER ID   IMAGE          COMMAND       CREATED              STATUS                          PORTS   NAMES
+1b937126d5bc   ubuntu:16.04   "/bin/bash"   About a minute ago   Exited (0) About a minute ago           upbeat_archimedes
 </d-code>
 
 Let's parse this out:
@@ -260,8 +260,8 @@ A container might become unresponsive, or it might be a long-running service
 that you want to terminate. You can do this with either of the following:
 
 <d-code block language="bash">
-docker kill <container>
-docker stop <container>
+docker kill "container"
+docker stop "container"
 </d-code>
 
 `stop` is more graceful, trying SIGTERM first, and then SIGKILL. `kill` sends
@@ -282,13 +282,13 @@ you've run them all with the "--rm" option. Fortunately, we can get rid of
 these with
 
 <d-code block language="bash">
-docker rm <container>
+docker rm "container"
 </d-code>
 
 which is now an alias for
 
 <d-code block language="bash">
-docker container rm <container>
+docker container rm "container"
 </d-code>
 
 
@@ -301,10 +301,10 @@ Here are some useful options you might want to use:
 | ------ | --------------- | ----------------------------------------- |
 | --rm   |                 | removes container after exit              |
 | -ti    |                 | run interactively with a pTTY             |
-| -e     |     <vars>      | set environment variables                 |
-| -h     |   <hostname>    | set the container's hostname              |
-| -p     | <hport>:<cport> | map host's <hport> to container's <cport> |
-| -v     |  <hdir>:<cdir>  | mount host's <hdir> on <cdir>             |
+| -e     |      vars       | set environment variables                 |
+| -h     |    hostname     | set the container's hostname              |
+| -p     |   hport:cport   | map host's "hport" to container's "cport" |
+| -v     |    hdir:cdir    | mount host's "hdir" on "cdir"             |
 </d-code>
 
 ### Executing Commands in a Running Container
@@ -341,8 +341,8 @@ Docker saves this output for you, however, and you can retrieve these by
 running
 
 <d-code block language="bash">
-docker logs <container>
-docker container logs <container>
+docker logs "container"
+docker container logs "container"
 </d-code>
 
 The first command is now an alias for the second command. There are a number
