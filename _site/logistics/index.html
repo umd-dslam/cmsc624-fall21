@@ -18,6 +18,10 @@
   <link rel="canonical" href="/cmsc624-fall21/logistics/">
 
   
+  <!-- Load Latex JS -->
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.component.js"></script>
+  
 </head>
 
 
@@ -46,7 +50,7 @@
       <div class="trigger">
         <a class="page-link" href="/cmsc624-fall21/logistics/">logistics</a>
         <!-- <a class="page-link" href="/cmsc624-fall21/lectures/">lectures</a> -->
-        <!-- <a class="page-link" href="/cmsc624-fall21/notes/">notes</a> -->
+        <a class="page-link" href="/cmsc624-fall21/notes/">notes</a>
         <!-- <a class="page-link" href="/cmsc624-fall21/calendar/">calendar</a> -->
         <a class="page-link" href="/cmsc624-fall21/a1/">hw1</a>
         <a class="page-link" href="/cmsc624-fall21/a2/">hw2</a>
@@ -158,9 +162,24 @@
 <script src="/cmsc624-fall21/assets/js/common.js"></script>
 
 
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="/cmsc624-fall21/assets/js/katex.js"></script>
 
 
 
+<!-- Load Anchor JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+<script>
+  anchors.options.visible = 'hover';
+  anchors.add('article h2, article h3, article h4, article h5, article h6');
+</script>
+
+
+
+<!-- Adjust LaTeX JS -->
+<script src="/cmsc624-fall21/assets/js/latex.js"></script>
 
 
 <!-- Include custom icon fonts -->

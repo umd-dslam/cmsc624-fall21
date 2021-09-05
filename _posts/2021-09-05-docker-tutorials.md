@@ -9,7 +9,7 @@ lecturers:
     url: "https://www.cs.umd.edu/~abadi/"
 
 authors:
-  - name: Michael Marsh (CMSC 417)  # author's full name
+  - name: Michael Marsh # author's full name
     url: "https://scholar.google.com/citations?hl=en&user=UKt7iIYAAAAJ&view_op=list_works&sortby=pubdate"  # optional URL to the author's homepage
   - name: Gang Liao  # author's full name
     url: "https://gangliao.me/"  # optional URL to the author's homepage
@@ -19,10 +19,14 @@ editors:
     url: "https://gangliao.me/"  # optional URL to the editor's homepage
 
 abstract: >
-If you're using Windows or Mac OS (M1 chips),  you can use docker for 
-all assignments. It's worth taking some time to familiarize
-ourselves with it, especially since you're unlikely to be familiar
-with it.
+  If you're using Windows or Mac OS (M1 chips),  you can use docker for 
+  all assignments. It's worth taking some time to familiarize
+  ourselves with it, especially since you're unlikely to be familiar
+  with it.
+---
+
+
+### Docker Images
 
 What is docker? You can think of it like a lightweight VM. It's
 really considerably different, because it uses the host processor,
@@ -34,10 +38,6 @@ applications and all of their dependencies.  The guest can only see
 the resources given to it by the host, so it provides some (minimal)
 level of security. It also means we can start a process from a
 known-clean state, so we have repeatability.
----
-
-
-### Docker Images
 
 Let's start with the concept of an **image**. This is the self-contained
 guest Linux OS, which is configured to automatically run some process
@@ -49,7 +49,7 @@ has a default registry built in. Our VM is running Ubuntu 16.04, and it turns
 out there's an image available with this OS on it! Here's the command to run:
 
 ```shell
-    docker pull ubuntu:16.04
+docker pull ubuntu:16.04
 ```
 
 Let's go through this command. "docker" is, of course, the utility
@@ -63,14 +63,14 @@ docker we only want one image, and it's the one with the **tag**
 When the command completes, try running
 
 ```shell
-    docker images
+docker images
 ```
 
 You should see something like:
 
 ```shell
-    REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-    ubuntu              16.04               2a4cca5ac898        28 hours ago        111MB
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              16.04               2a4cca5ac898        28 hours ago        111MB
 ```
 
 Most of this should be fairly self-explanatory. The image ID is
@@ -82,8 +82,8 @@ We can do a few things with this image, aside from running it. Try
 the following:
 
 ```shell
-    docker tag ubuntu:16.04 my_ubuntu
-    docker images
+docker tag ubuntu:16.04 my_ubuntu
+docker images
 ```
 
 Note that we now see the same image ID twice, but with different
@@ -92,8 +92,8 @@ is tagged as "latest" if you don't specify one. Let's try specifying
 a tag, though:
 
 ```shell
-    docker tag ubuntu:16.04 foo:bar
-    docker images
+docker tag ubuntu:16.04 foo:bar
+docker images
 ```
 
 The results should not be surprising.
@@ -103,8 +103,8 @@ it's good to know how to clean these up. Let's get rid of our new
 tagged images:
 
 ```shell
-    docker rmi my_ubuntu:latest foo:bar
-    docker images
+docker rmi my_ubuntu:latest foo:bar
+docker images
 ```
 
 A common problem is that we'll end up reusing an old tag, leaving
@@ -112,7 +112,7 @@ an image with no `repository:tag` name. These show up as "<none>:<none>".
 We can get rid of all of these with the following bash one-liner:
 
 ```shell
-    docker images -a | grep none | awk '{print $3}' | xargs docker rmi
+docker images -a | grep none | awk '{print $3}' | xargs docker rmi
 ```
 
 For the curious, feel free to read the man pages for `awk` and `xargs`.
@@ -145,27 +145,27 @@ privileges, mounted volumes, environment variables, and so on. The most
 basic invocation is
 
 ```shell
-    docker run ubuntu:16.04
+docker run ubuntu:16.04
 ```
 
 If you run this, you'll find that it pauses for a second or so, and then
 returns to the command line. If you want to see running containers, run
 
 ```shell
-    docker ps
+docker ps
 ```
 
 You see headings, but probably no actual containers. Now, try
 
 ```shell
-    docker ps -a
+docker ps -a
 ```
 
 Now we have something! Here's an example of what you might see:
 
 ```shell
-    CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
-    1b937126d5bc        ubuntu:16.04        "/bin/bash"         About a minute ago   Exited (0) About a minute ago                       upbeat_archimedes
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
+1b937126d5bc        ubuntu:16.04        "/bin/bash"         About a minute ago   Exited (0) About a minute ago                       upbeat_archimedes
 ```
 
 Let's parse this out:
@@ -186,13 +186,13 @@ By default, names are assigned randomly according to the pattern
 We can assign a name to the container, which is often useful:
 
 ```shell
-    docker run --name=bash_test ubuntu:16.04
+docker run --name=bash_test ubuntu:16.04
 ```
 
 This will behave similarly to the previous command, but if we run
 
 ```shell
-    docker ps -a
+docker ps -a
 ```
 
 We'll now see our container named "bash_test" along with whatever random name
@@ -202,7 +202,7 @@ Usually, an image is defined to do something useful when run non-interactively.
 We can get interactive access to the container, though, as follows:
 
 ```shell
-    docker run -ti ubuntu:16.04
+docker run -ti ubuntu:16.04
 ```
 
 We've passed two new options to docker run. The `-t` option allocates a
@@ -216,10 +216,10 @@ When you're done playing around in this shell, exit to stop the container.
 At this point, you probably want to get rid of these stopped containers. Run:
 
 ```shell
-    docker rm bash_test
-    docker ps -a
+docker rm bash_test
+docker ps -a
 ```
-    
+
 You'll still have the two randomly-named containers, but the one named
 "bash_test" should no longer be present. Remove the other two, as well.
 
@@ -227,7 +227,7 @@ We don't have to run the configured program in a container; we can run any
 command that's present on the image. Let's see this in action:
 
 ```shell
-    docker run ubuntu:16.04 /bin/date
+docker run ubuntu:16.04 /bin/date
 ```
 
 That should print the date in the container. It's probably in UTC, while running
@@ -235,14 +235,14 @@ That should print the date in the container. It's probably in UTC, while running
 can also specify options:
 
 ```shell
-    docker run ubuntu:16.04 ls /var
+docker run ubuntu:16.04 ls /var
 ```
 
 Another very useful option is `--rm`, which will get rid of the container once
 it stops:
 
 ```shell
-    docker run --rm --name="rm_test" ubuntu:16.04 ls /var
+docker run --rm --name="rm_test" ubuntu:16.04 ls /var
 ```
 
 We've once again been using old-style commands, which are aliases:
@@ -260,8 +260,8 @@ A container might become unresponsive, or it might be a long-running service
 that you want to terminate. You can do this with either of the following:
 
 ```shell
-    docker kill <container>
-    docker stop <container>
+docker kill <container>
+docker stop <container>
 ```
 
 `stop` is more graceful, trying SIGTERM first, and then SIGKILL. `kill` sends
@@ -282,13 +282,13 @@ you've run them all with the "--rm" option. Fortunately, we can get rid of
 these with
 
 ```shell
-    docker rm <container>
+docker rm <container>
 ```
 
 which is now an alias for
 
 ```shell
-    docker container rm <container>
+docker container rm <container>
 ```
 
 
@@ -315,8 +315,8 @@ a container, rather than an image. Here's a common thing you might want to
 do:
 
 ```shell
-    docker run --name=svc_instance my_service:latest
-    docker exec -ti svc_instance /bin/bash
+docker run --name=svc_instance my_service:latest
+docker exec -ti svc_instance /bin/bash
 ```
 
 What this does is to first start a container using the latest version of
@@ -326,7 +326,7 @@ interactive command, though. There may be times when you want to run something
 like:
 
 ```shell
-    docker exec svc_instance touch /var/cache/magic_file
+docker exec svc_instance touch /var/cache/magic_file
 ```
 
 in order to change the behavior of a running process. As with the other commands
@@ -341,8 +341,8 @@ Docker saves this output for you, however, and you can retrieve these by
 running
 
 ```shell
-    docker logs <container>
-    docker container logs <container>
+docker logs <container>
+docker container logs <container>
 ```
 
 The first command is now an alias for the second command. There are a number

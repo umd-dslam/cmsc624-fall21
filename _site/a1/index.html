@@ -18,6 +18,10 @@
   <link rel="canonical" href="/cmsc624-fall21/a1/">
 
   
+  <!-- Load Latex JS -->
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.component.js"></script>
+  
 </head>
 
 
@@ -46,7 +50,7 @@
       <div class="trigger">
         <a class="page-link" href="/cmsc624-fall21/logistics/">logistics</a>
         <!-- <a class="page-link" href="/cmsc624-fall21/lectures/">lectures</a> -->
-        <!-- <a class="page-link" href="/cmsc624-fall21/notes/">notes</a> -->
+        <a class="page-link" href="/cmsc624-fall21/notes/">notes</a>
         <!-- <a class="page-link" href="/cmsc624-fall21/calendar/">calendar</a> -->
         <a class="page-link" href="/cmsc624-fall21/a1/">hw1</a>
         <a class="page-link" href="/cmsc624-fall21/a2/">hw2</a>
@@ -73,6 +77,10 @@
 
   <article class="post-content Understanding DB Execution Models clearfix">
     <p>In this assignment, you will get some hands-on experience exploring the performance and architectural differences between database system process models. The main challenge of this assignment will be to understand the existing code that we are providing you. By reading through this code, we hope you will get a sense of some of the basic implementation differences between thread-based and process-based process models.</p>
+
+<ul>
+  <li>Assignment 1: <a href="/cmsc624-fall21/assets/assignments/hw1/cmsc624-a1-sol-latex-template.zip" target="\_blank">cmsc624-a1-sol-latex-template.zip</a></li>
+</ul>
 
 <hr />
 
@@ -129,11 +137,23 @@
 
 <p>Each request updates several records in the database. In order to run a request, a process or thread calls a request’s execute function in order to process it. <code class="language-plaintext highlighter-rouge">Launcher</code> is the base class from which each execution model will derive (<code class="language-plaintext highlighter-rouge">ProcessPoolLauncher</code>, <code class="language-plaintext highlighter-rouge">ProcessLauncher</code>, <code class="language-plaintext highlighter-rouge">ThreadPoolLauncher</code>, and <code class="language-plaintext highlighter-rouge">ThreadLauncher</code>). Each of these classes overrides the launcher’s  <strong>ExecuteRequest</strong> function.</p>
 
-<p><strong>Your task</strong> is to complete the implementations of the <code class="language-plaintext highlighter-rouge">ProcessPoolLauncher</code>, and <code class="language-plaintext highlighter-rouge">ThreadPoolLauncher</code> classes. Look for <strong>“YOUR CODE HERE”</strong> annotations in the comments in <code class="language-plaintext highlighter-rouge">src/ProcessPoolLauncher.cc</code> and <code class="language-plaintext highlighter-rouge">src/ThreadPoolLauncher.cc</code>. As mentioned above, we have provided implementations of the process-per-request, and thread-per-request execution models in <code class="language-plaintext highlighter-rouge">ProcessLauncher.cc</code>, and <code class="language-plaintext highlighter-rouge">ThreadLauncher.cc</code>, respectively. You should use these implementations as references while building your thread-pool, and process-pool implementations.</p>
+<p><strong>Your task</strong> is to complete the implementations of the <code class="language-plaintext highlighter-rouge">ProcessLauncher</code>, <code class="language-plaintext highlighter-rouge">ProcessPoolLauncher</code>, and <code class="language-plaintext highlighter-rouge">ThreadPoolLauncher</code> classes. Look for <strong>“YOUR CODE HERE”</strong> annotations in the comments in cpp files. We have provided implementations of the thread-per-request execution models in <code class="language-plaintext highlighter-rouge">ThreadLauncher.cc</code>. You should use these implementations as references while building your process, thread-pool, and process-pool implementations.</p>
 
 <h3 id="command-line-arguments">Command-line Arguments</h3>
 
-<p>The provided makefile will compile your executable into a directory <code class="language-plaintext highlighter-rouge">build/db</code>. The executable takes parameters <code class="language-plaintext highlighter-rouge">--exp_type</code>, <code class="language-plaintext highlighter-rouge">--max_outstanding</code>, and <code class="language-plaintext highlighter-rouge">--pool_size</code>. Each of these three parameters takes <strong>integers</strong> as arguments.</p>
+<p>The provided CMake file will compile your executable into a directory <code class="language-plaintext highlighter-rouge">build/db</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build
+cmake ..
+make <span class="nt">-j8</span>
+make <span class="nb">install</span> 
+</code></pre></div></div>
+
+<blockquote>
+  <p>CMakeLists.txt is incomplete. Before <code class="language-plaintext highlighter-rouge">make install</code>, you need to configure the <code class="language-plaintext highlighter-rouge">db</code> executable by yourself (See hint in CMakeLists.txt).</p>
+</blockquote>
+
+<p>The executable takes parameters <code class="language-plaintext highlighter-rouge">--exp_type</code>, <code class="language-plaintext highlighter-rouge">--max_outstanding</code>, and <code class="language-plaintext highlighter-rouge">--pool_size</code>. Each of these three parameters takes <strong>integers</strong> as arguments.</p>
 
 <blockquote>
   <p>The command-line parsing code is not robust enough to deal with incorrectly specified parameter arguments!</p>
@@ -180,20 +200,13 @@
 
 <h3 id="profiling">Profiling</h3>
 
-<p><code class="language-plaintext highlighter-rouge">perf</code> began as a tool for using the performance counters subsystem in Linux, and has had various enhancements to add tracing capabilities. Performance counters are CPU hardware registers that count hardware events such as instructions executed, cache-misses suffered, or branches mispredicted. They form a basis for profiling applications to trace dynamic control flow and identify hotspots. perf provides rich generalized abstractions over hardware specific capabilities. Among others, it provides per task, per CPU and per-workload counters, sampling on top of these and source code event annotation.</p>
+<p><code class="language-plaintext highlighter-rouge">perf</code> is a useful tool for measuring where time is spent when running code and for finding the root cause of surprising performance results in an experiment.</p>
 
-<p>The userspace perf command present a simple to use interface with commands like:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">perf record</code>: record events for later reporting</li>
-  <li><code class="language-plaintext highlighter-rouge">perf report</code>: break down events by process, function, etc.</li>
-</ul>
-
-<p>This <a href="http://daslab.seas.harvard.edu/classes/cs165/doc/sections/S8_perf.pdf">System Performance Tools: perf</a> provides a good reference for profiling with perf on Linux.</p>
+<p><a href="http://daslab.seas.harvard.edu/classes/cs165/doc/sections/S8_perf.pdf">System Performance Tools: perf</a> provides a good reference for profiling with perf on Linux.</p>
 
 <h4 id="perf">Perf</h4>
 
-<p>You must first collect the samples using <code class="language-plaintext highlighter-rouge">perf record</code>. This generates an output file called <code class="language-plaintext highlighter-rouge">perf.data</code>.</p>
+<p>You can collect the samples using <code class="language-plaintext highlighter-rouge">perf record</code>. This generates an output file called <code class="language-plaintext highlighter-rouge">perf.data</code>.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>perf record <span class="nt">-g</span>  build/db <span class="nt">--exp_type</span> 3 <span class="nt">--max_outstanding</span> 1
 </code></pre></div></div>
@@ -205,7 +218,7 @@
 
 <h4 id="flame-graph">Flame Graph</h4>
 
-<p>The flame graph, invented by Brendan D. Gregg, is a wonderful technique to visualize performance statistics. <code class="language-plaintext highlighter-rouge">perf.data</code> was previously generated by perf, can be used to create a flame graph. You first need to clone the flame graph’s repository from GitHub:</p>
+<p>The flame graph, invented by Brendan D. Gregg, helps to visualize the stats generated by perf and stored in <code class="language-plaintext highlighter-rouge">perf.data</code>. To use it, you first clone the flame graph’s repository from GitHub:</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/brendangregg/FlameGraph.git
 </code></pre></div></div>
@@ -219,18 +232,22 @@
 
 <figure id="cell-ex-figure" class="l-body-outset">
   <div class="row">
-    <img src="/cmsc624-fall21/assets/img/assignments/flamegraph.png" />
+    <img src="/cmsc624-fall21/assets/img/assignments/flamegraph.png" width="80%" />
   </div>
   <figcaption>
     <strong> Flame Graph Example </strong>
   </figcaption>
 </figure>
 
+<blockquote>
+  <p><a href="https://www.markhansen.co.nz/profiler-uis/">This post</a> is a quick literature review of CPU profiler user interfaces available for visualising the output of the linux perf tool.</p>
+</blockquote>
+
 <h3 id="hints">Hints</h3>
 
 <p>The header files corresponding to the four execution models contain the appropriate structures for communication between the main launcher thread, and processes/threads used to execute requests.</p>
 
-<p>The thread- and process-pools are managed via a <code class="language-plaintext highlighter-rouge">free-list</code>. Each process or thread has a corresponding <code class="language-plaintext highlighter-rouge">process_state</code> or <code class="language-plaintext highlighter-rouge">thread_state</code> struct (<code class="language-plaintext highlighter-rouge">include/ProcessPoolLauncher.h</code> and <code class="language-plaintext highlighter-rouge">include/ThreadPoolLauncher.h</code>). These structs are linked together into a free-list, which is used to indicate whether or not a process is currently in use.</p>
+<p>The thread- and process-pools are managed via a linked list. Each process or thread has a corresponding <code class="language-plaintext highlighter-rouge">process_state</code> or <code class="language-plaintext highlighter-rouge">thread_state</code> struct (<code class="language-plaintext highlighter-rouge">include/ProcessPoolLauncher.h</code> and <code class="language-plaintext highlighter-rouge">include/ThreadPoolLauncher.h</code>). These structs are linked together into a pool, which is used to indicate whether or not a process is currently in use.</p>
 
 <h3 id="deliverables---part-1">Deliverables - Part 1</h3>
 
@@ -243,7 +260,7 @@
 </ul>
 
 <blockquote>
-  <p>20 points for each execution model. Total 40 points.</p>
+  <p>Process, thread-pool, and process-pool execution models receive 5, 7, and 10 points, respectively. Total 32 points.</p>
 </blockquote>
 
 <h3 id="deliverables---part-2">Deliverables - Part 2</h3>
@@ -257,12 +274,12 @@
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>process_pool 2000 3000 4000 5000 6000 7000 ...
 </code></pre></div></div>
 
-<p>Provide a brief explanation (between three to four paragraphs) for the throughput trends you observe in a separate file, <strong>responses.txt</strong>. In particular, explain the differences between each process model:</p>
+<p>Provide a brief explanation (between three to four paragraphs) for the throughput trends you observe in a separate file <strong>{your name}-a1-sol.pdf</strong> (please use <a href="/cmsc624-fall21/assets/assignments/hw1/cmsc624-a1-sol-latex-template.zip" target="\_blank">cmsc624-a1-sol-latex-template.zip</a> we provided). In particular, explain the differences between each process model:</p>
 
 <ul>
   <li>Why do some models get higher throughput than other models?</li>
   <li>Which process model is the fastest and why is it the fastest?</li>
-  <li>Which one is slowest and why is it slowest? Please use <a href="https://www.brendangregg.com/perf.html">perf</a> to profile the process model and explain where the bottleneck is.</li>
+  <li>Which one is slowest and why is it slowest? Please use <a href="https://www.brendangregg.com/perf.html">perf</a> to profile the process model and explain where the bottleneck is. For example, what are the names of the hotspot <strong>kernel functions</strong> and what are their purposes?</li>
   <li>Why are the ones in the middle slower/faster than the two at the extremes?</li>
   <li>How and why does throughout change as the maximum number of outstanding requests or pool size change?</li>
   <li>In addition, explain the differences between high-contention and low-contention experiments.</li>
@@ -274,22 +291,23 @@
 
 <h3 id="deliverables---part-3">Deliverables - Part 3</h3>
 
-<p>Finally, answer each of the following questions briefly (at most two paragraphs per question) in <code class="language-plaintext highlighter-rouge">responses.txt</code>.</p>
+<p>Finally, answer each of the following questions briefly (at most two paragraphs per question).</p>
 
 <p>Questions</p>
 
 <ul>
   <li>The process-pool implementation must copy a request into a process’s request buffer. The process-per-request implementation, however, does not need to copy or pass requests between processes. Why?</li>
   <li>The process-pool implementation requires a request to be copied into a process-local buffer before the request can be executed. On the other hand, the thread-pool implementation can simply use a pointer to the appropriate request. Why?</li>
+  <li>Inspect the data structure of the pool in the thread-pool and process-pool implementations. Why the code might cause a memory leak?</li>
 </ul>
 
 <blockquote>
-  <p>8 points for each response. Total 16 points.</p>
+  <p>8 points for each response. Total 24 points.</p>
 </blockquote>
 
 <h3 id="how-to-submit">How to submit</h3>
 
-<p>Please submit all text files discussed above to the Assignment 1 link on <a href="https://elms.umd.edu/">ELMS</a>. You do not need to submit any code, since we have access to your repositories.</p>
+<p>Please submit all text files (<code class="language-plaintext highlighter-rouge">{your name}</code>-a1-sol.pdf, high-contention.txt and lowcontention.txt) discussed above to the assignment 1 link on <a href="https://elms.umd.edu/">ELMS</a>. You do not need to submit any code, since we have access to your repositories.</p>
 
   </article>
 
@@ -333,9 +351,24 @@
 <script src="/cmsc624-fall21/assets/js/common.js"></script>
 
 
+<!-- Load KaTeX -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.1/katex.min.js"></script>
+<script src="/cmsc624-fall21/assets/js/katex.js"></script>
 
 
 
+<!-- Load Anchor JS -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+<script>
+  anchors.options.visible = 'hover';
+  anchors.add('article h2, article h3, article h4, article h5, article h6');
+</script>
+
+
+
+<!-- Adjust LaTeX JS -->
+<script src="/cmsc624-fall21/assets/js/latex.js"></script>
 
 
 <!-- Include custom icon fonts -->
