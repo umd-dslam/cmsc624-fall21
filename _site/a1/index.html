@@ -79,7 +79,7 @@
     <p>In this assignment, you will get some hands-on experience exploring the performance and architectural differences between database system process models. The main challenge of this assignment will be to understand the existing code that we are providing you. By reading through this code, we hope you will get a sense of some of the basic implementation differences between thread-based and process-based process models.</p>
 
 <ul>
-  <li>Assignment 1: <a href="/cmsc624-fall21/assets/assignments/hw1/cmsc624-a1-sol-latex-template.zip" target="\_blank">cmsc624-a1-sol-latex-template.zip</a></li>
+  <li>Assignment 1: <a href="/cmsc624-fall21/assets/assignments/hw1/cmsc624-a1-sol-latex-template.zip" target="\_blank">cmsc624-a1-sol-latex-template.zip</a>. You can upload the template to <a href="https://www.overleaf.com/">Overleaf</a>.</li>
   <li>Docker can be used to complete this assignment if you are using Windows or Apple (M1 chips): <a href="https://dslam-umd.github.io/cmsc624-fall21/notes/docker-tutorials/">Docker Tutorial</a></li>
 </ul>
 
@@ -149,10 +149,6 @@ cmake ..
 make <span class="nt">-j8</span>
 make <span class="nb">install</span> 
 </code></pre></div></div>
-
-<blockquote>
-  <p>CMakeLists.txt is incomplete. Before <code class="language-plaintext highlighter-rouge">make install</code>, you need to configure the <code class="language-plaintext highlighter-rouge">db</code> executable by yourself (See hint in CMakeLists.txt).</p>
-</blockquote>
 
 <p>The executable takes parameters <code class="language-plaintext highlighter-rouge">--exp_type</code>, <code class="language-plaintext highlighter-rouge">--max_outstanding</code>, and <code class="language-plaintext highlighter-rouge">--pool_size</code>. Each of these three parameters takes <strong>integers</strong> as arguments.</p>
 
@@ -261,7 +257,7 @@ make <span class="nb">install</span>
 </ul>
 
 <blockquote>
-  <p>Process, thread-pool, and process-pool execution models receive 5, 7, and 10 points, respectively. Total 32 points.</p>
+  <p>Process, thread-pool, and process-pool execution models receive 7, 10, and 15 points, respectively. Total 32 points.</p>
 </blockquote>
 
 <h3 id="deliverables---part-2">Deliverables - Part 2</h3>
